@@ -1,6 +1,7 @@
 package hello.core.lifecycle;
 
-import org.springframework.context.annotation.Bean;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
 public class NetworkClient  {
 
@@ -29,12 +30,14 @@ public class NetworkClient  {
         System.out.println("연결 종료");
     }
 
+    @PostConstruct
     public void init() {
         System.out.println("NetworkClient.init");
         connect();
         call("초기화 연결 메시진");
     }
 
+    @PreDestroy
     public void close() {
         System.out.println("NetworkClient.close");
         disconnect();
